@@ -48,6 +48,9 @@ image_t images[] = {
 	{.name = "device_fat16",					.image = 0},
 	{.name = "device_fat32",					.image = 0},
 	{.name = "device_ntfs",						.image = 0},
+	{.name = "device_befs",						.image = 0},
+	{.name = "device_freebsd",					.image = 0},
+	{.name = "device_openbsd",					.image = 0},
 	{.name = "device_cdrom",					.image = 0},
 	{.name = "device_selection",				.image = 0},
 	{.name = "device_scroll_prev",				.image = 0},
@@ -86,6 +89,9 @@ enum {
 	iDeviceFAT16,
 	iDeviceFAT32,
 	iDeviceNTFS,
+	iDeviceBEFS,
+	iDeviceFreeBSD,
+	iDeviceOpenBSD,
 	iDeviceCDROM,
 	iSelection,
 	iDeviceScrollPrev,
@@ -618,6 +624,18 @@ void drawDeviceIcon(BVRef device, pixmap_t *buffer, position_t p)
 				devicetype = iDeviceEXT3;		// Use EXT2/3 icon
 				break;
 				
+			case kPartitionTypeBEFS:
+				devicetype = iDeviceBEFS;		// Use BEFS/Haiku icon
+				break;
+
+			case kPartitionTypeFreeBSD:			// Use FreeBSD icon
+				devicetype = iDeviceFreeBSD;
+				break;
+
+			case kPartitionTypeOpenBSD:			// Use OpenBSD icon
+				devicetype = iDeviceOpenBSD;
+				break;
+
 			default:
 				devicetype = iDeviceGeneric;	// Use Generic icon
 				break;
@@ -1298,6 +1316,9 @@ int loadGraphics()
 	LOADPNG(device_fat16);
 	LOADPNG(device_fat32);
 	LOADPNG(device_ntfs);
+	LOADPNG(device_befs);
+	LOADPNG(device_freebsd);
+	LOADPNG(device_openbsd);
 	LOADPNG(device_cdrom);
 	LOADPNG(device_selection);
 	LOADPNG(device_scroll_prev);
