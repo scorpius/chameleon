@@ -1335,6 +1335,12 @@ static BVRef diskScanGPTBootVolumes( int biosdev, int * countPtr )
                 		  							(BVFree)free, 0, kBIOSDevTypeHardDrive, 0);
 								break;
 
+							  case FDISK_LINUX:
+							    bvr = newGPTBVRef(biosdev, gptID, gptMap->ent_lba_start, gptMap,
+                	  								0, 0, 0, 0, 0, 0, EX2GetDescription,
+                		  							(BVFree)free, 0, kBIOSDevTypeHardDrive, 0);
+								break;
+
                 default:
                   bvr = newGPTBVRef(biosdev, gptID, gptMap->ent_lba_start, gptMap,
                                     0, 0, 0, 0, 0, 0, 0,
